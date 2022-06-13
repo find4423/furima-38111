@@ -3,9 +3,16 @@
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-|email|string|null: false|
-|password|string|null: false|
+|nickname|string|null: false|
+|email|string|null: false, unique: true|
+|encrypted_password|string|null: false|
+|first_name|string|null: false|
+|last_name|string|null: false|
+|first_name_kana|string|null: false|
+|last_name_kana|string|null: false|
+|birth_year|integer|null: false|
+|birth_month|integer|null: false|
+|birth_day|integer|null: false|
 
 ### Association
 - has_many :items
@@ -14,12 +21,12 @@
 ## items Table
 |Column|Type|Options|
 |------|----|-------|
-|item|string|null: false|
+|name|string|null: false|
 |explanation|text|null: false|
 |category_id|integer|null: false|
 |condition_id|integer|null: false|
 |shipping_charge_id|integer|null: false|
-|shipping_area_id|integer|null: false|
+|pref_id|integer|null: false|
 |delivery_id|integer|null: false|
 |price|integer|null: false|
 |user|reference|null: false, foreign_key: true|
@@ -38,16 +45,17 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_many :order_addresses
+- has_one :order_addresses
 
 ## order_addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|post_code|integer|null: false|
-|pref|string|null: false|
+|post_code|string|null: false|
+|pref_id|integer|null: false|
 |city|string|null: false|
-|address|string|null: false|
-|number|integer|null: false|
+|address_line1|string|null: false|
+|address_line2|string|---|
+|number|string|null: false|
 
 ### Association
 - belongs_to :order
