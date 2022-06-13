@@ -1,24 +1,53 @@
-# README
+# readme
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|
+|password|string|null: false|
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :orders
 
-* Ruby version
+## items Table
+|Column|Type|Options|
+|------|----|-------|
+|item|string|null: false|
+|explanation|text|null: false|
+|category_id|integer|null: false|
+|condition_id|integer|null: false|
+|shipping_charge_id|integer|null: false|
+|shipping_area_id|integer|null: false|
+|delivery_id|integer|null: false|
+|price|integer|null: false|
+|user|reference|null: false, foreign_key: true|
 
-* System dependencies
+### Association
+- belongs_to :user
+- has_one :order
 
-* Configuration
+## ordersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|price|integer|null: false|
+|user|reference|null: false, foreign_key: true|
+|item|reference|null: false, foreign_key: true|
 
-* Database creation
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_many :order_addresses
 
-* Database initialization
+## order_addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|post_code|integer|null: false|
+|pref|string|null: false|
+|city|string|null: false|
+|address|string|null: false|
+|number|integer|null: false|
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :order
