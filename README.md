@@ -10,9 +10,7 @@
 |last_name|string|null: false|
 |first_name_kana|string|null: false|
 |last_name_kana|string|null: false|
-|birth_year|integer|null: false|
-|birth_month|integer|null: false|
-|birth_day|integer|null: false|
+|birth_day|date|null: false
 
 ### Association
 - has_many :items
@@ -38,7 +36,6 @@
 ## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|price|integer|null: false|
 |user|reference|null: false, foreign_key: true|
 |item|reference|null: false, foreign_key: true|
 
@@ -56,6 +53,7 @@
 |address_line1|string|null: false|
 |address_line2|string|---|
 |number|string|null: false|
+|order_id|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :order
