@@ -53,7 +53,7 @@
 |address_line1|string|null: false|
 |address_line2|string|---|
 |number|string|null: false|
-|order_id|reference|null: false, foreign_key: true|
+|order|reference|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :order
