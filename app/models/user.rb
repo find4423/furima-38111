@@ -13,5 +13,5 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー]+\z/u, allow_blank: true }
   validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー]+\z/u, allow_blank: true }
   # validates :password, length:{minimum:6}, allow_blank: true デフォでかかったやがったこいつ...何の時間やったんや...
-  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/ }, allow_blank: true
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }, allow_blank: true
 end
