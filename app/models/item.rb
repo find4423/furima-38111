@@ -7,6 +7,14 @@ class Item < ApplicationRecord
     validates :pref_id
   end
 
+  with_options presence: true do
+    validates :name
+    validates :explanation
+    validates :price, numericality: {in:300..9999999}
+  end
+
+  belongs_to :user
+  # has_one :order
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
