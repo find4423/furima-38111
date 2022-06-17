@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  validates :price,numericality: {in:300..9999999}, allow_blank: true
+  validates :price,numericality: {greater_than_or_equal_to: 300,less_than_or_equal_to: 9999999}, allow_blank: true
 
   belongs_to :user
   # has_one :order
