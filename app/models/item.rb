@@ -10,8 +10,11 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :explanation
-    validates :price, numericality: {in:300..9999999}
+    validates :price
+    validates :image
   end
+
+  validates :price,numericality: {in:300..9999999}, allow_blank: true
 
   belongs_to :user
   # has_one :order
