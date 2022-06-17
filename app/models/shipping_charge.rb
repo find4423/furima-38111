@@ -9,4 +9,3 @@ class ShippingCharge < ActiveHash::Base
   has_many :items
 end
 
-# ---、着払い(購入者負担)、送料込み(出品者負担

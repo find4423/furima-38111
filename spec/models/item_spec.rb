@@ -12,6 +12,11 @@ RSpec.describe Item, type: :model do
       end
     end
     context "保存できない場合" do
+      it "userが紐づいていないとできない" do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
       it "imageが空だとできない" do
         @item.image = nil
         @item.valid?
@@ -66,6 +71,16 @@ RSpec.describe Item, type: :model do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+      it "priceに半角数字以外が含まれているとできない" do
+        @item.price = "３００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it "priceに少数が含まれているならできない" do
+        @item.price = 300.1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be an integer")
       end
     end
   end
