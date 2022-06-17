@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  with_options numericality: {other_than: 1, message: "can't be blank"} do
+  with_options numericality: {other_than: 0, message: "can't be blank"} do
     validates :condition_id
     validates :category_id
     validates :shipping_charge_id
