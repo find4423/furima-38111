@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  with_options numericality: {other_than: 0, message: "can't be blank"} do
+  with_options numericality: { other_than: 0, message: "can't be blank" } do
     validates :condition_id
     validates :category_id
     validates :shipping_charge_id
@@ -14,7 +14,8 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  validates :price,numericality: {greater_than_or_equal_to: 300,less_than_or_equal_to: 9999999,only_integer: true}, allow_blank: true
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true },
+                    allow_blank: true
 
   belongs_to :user
   # has_one :order
