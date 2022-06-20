@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :find_item, only: [:create, :show, :edit, :update, :destroy]
+  before_action :find_item, only: [ :show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :move_to_index, only: [:edit, :destroy]
 
@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @item = Item.create(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -34,7 +35,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.delete
+    @item.destroy
     redirect_to root_path
   end
 
