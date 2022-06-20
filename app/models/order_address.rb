@@ -1,4 +1,3 @@
 class OrderAddress < ApplicationRecord
-
+  belongs_to :order
 end
-belongs_to :order
