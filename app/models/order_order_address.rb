@@ -1,12 +1,13 @@
 class OrderOrderAddress
   include ActiveModel::Model
-  attr_accessor :post_code, :pref_id, :city, :address_line1, :address_line2, :number, :order_id, :user_id, :item_id
+  attr_accessor :post_code, :pref_id, :city, :address_line1, :address_line2, :number, :order_id, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :post_code
     validates :city
     validates :address_line1
     validates :number
+    validates :token
   end
   
   validates :pref_id, numericality: {other_than: 0}
