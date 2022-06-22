@@ -22,7 +22,7 @@ RSpec.describe OrderOrderAddress, type: :model do
         expect(@order.errors.full_messages).to include("Post code can't be blank")
       end
       it 'post_codeは3桁ハイフン4桁でないとできない' do
-        @order.post_code = '000-000'
+        @order.post_code = '00-000'
         @order.valid?
         expect(@order.errors.full_messages).to include('Post code is invalid')
       end
