@@ -12,7 +12,7 @@ class OrderOrderAddress
   
   validates :pref_id, numericality: {other_than: 0}
   validates :post_code,format: {with: /\A[0-9]{3}-[0-9]{4}\z/},allow_blank: true
-  validates :number,format: {with: /\d{10,11}/},allow_blank: true
+  validates :number,format: {with: /\d[0-9]{10,11}/},allow_blank: true
   
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
