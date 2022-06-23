@@ -18,7 +18,7 @@ class Item < ApplicationRecord
                     allow_blank: true
 
   belongs_to :user
-  # has_one :order
+  has_one :order
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions

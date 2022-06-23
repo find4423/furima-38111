@@ -6,5 +6,5 @@ window.addEventListener('load', () => {
     const input = price.value;
     commission.innerHTML = `${Math.floor(input *  (1/10)) }`;
     profit.innerHTML = `${Math.floor(input - input * (1/10))}`;
-  })
+  }); 
  });
