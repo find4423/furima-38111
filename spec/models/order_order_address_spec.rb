@@ -2,15 +2,19 @@ require 'rails_helper'
 
 RSpec.describe OrderOrderAddress, type: :model do
   before do
-    user = FactoryBot.create(:user)
-    item = FactoryBot.create(:item)
-    @order = FactoryBot.build(:order_order_address, user_id: user.id, item_id: item.id)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order = FactoryBot.build(:order_order_address, user_id: @user.id, item_id: @item.id)
     sleep 0.1
   end
 
   describe '商品購入' do
     context '購入時、保存できる場合' do
       it '各項目があればできる' do
+        expect(@order).to be_valid
+      end
+      it "建物が空でも保存できる" do
+        @order.address_line2 = ""
         expect(@order).to be_valid
       end
     end
@@ -51,6 +55,11 @@ RSpec.describe OrderOrderAddress, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Number can't be blank")
       end
+      it '電話番号が12桁以上では購入できない' do
+        @order.number = '0901234123411111'
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Number is invalid')
+      end
       it 'numberは10桁以上じゃないとできない' do
         @order.number = '090123412'
         @order.valid?
@@ -60,6 +69,16 @@ RSpec.describe OrderOrderAddress, type: :model do
         @order.number = '０９０１２３４１２３４'
         @order.valid?
         expect(@order.errors.full_messages).to include('Number is invalid')
+      end
+      it 'userが紐づいていないとできない' do
+        @order.user_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐づいていないとできない' do
+        @order.item_id = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

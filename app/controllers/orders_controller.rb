@@ -5,11 +5,9 @@ class OrdersController < ApplicationController
 
   def index
     @order = OrderOrderAddress.new
-    #  @item = Item.find(params[:item_id])
   end
 
   def create
-    # @item = Item.find(params[:item_id])
     @order = OrderOrderAddress.new(order_params)
     if @order.valid?
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']

@@ -5,7 +5,7 @@ FactoryBot.define do
     city { '京都市' }
     address_line1 { '下京区美濃屋町182-10' }
     address_line2 { 'コーポそば102' }
-    number { '09012341234' }
+    number { '1234567890' }
     token { 'tok_abcdefghijk00000000000000000' }
   end
 end
